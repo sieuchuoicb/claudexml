@@ -4,8 +4,16 @@ Pydantic-like XML parser for Claude's XML output. Define a schema, parse Claude'
 
 ## Installation
 
+From PyPI:
+
 ```bash
 pip install claudexml
+```
+
+Or install from GitHub:
+
+```bash
+pip install git+https://github.com/sieuchuoicb/claudexml.git
 ```
 
 With optional extras:

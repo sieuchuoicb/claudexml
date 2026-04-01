@@ -54,7 +54,7 @@ def to_pydantic(instance: Any) -> Any:
             pydantic_fields[field_name] = (field_type, tag_descriptor.default)
 
     PydanticModel = create_model(
-        instance.__class__.__name__, **pydantic_fields  # type: ignore[call-overload]
+        instance.__class__.__name__, **pydantic_fields
     )
 
     data = instance.to_dict()
@@ -91,7 +91,7 @@ def from_pydantic_model(pydantic_cls: type) -> type:
     # Build namespace with XMLTag descriptors
     namespace: dict[str, Any] = {"__annotations__": {}}
 
-    for field_name, field_info in pydantic_cls.model_fields.items():
+    for field_name, field_info in pydantic_cls.model_fields.items():  # type: ignore[attr-defined]
         namespace["__annotations__"][field_name] = field_info.annotation
 
         if field_info.is_required():
@@ -126,6 +126,6 @@ def _make_pydantic_model(
                 pydantic_fields[fname] = (ftype, ...)
             else:
                 pydantic_fields[fname] = (ftype, tdesc.default)
-        return create_model(field_type.__name__, **pydantic_fields)  # type: ignore[call-overload]
+        return create_model(field_type.__name__, **pydantic_fields)  # type: ignore[no-any-return]
 
-    return field_type  # type: ignore[return-value]
+    return field_type  # type: ignore[no-any-return]

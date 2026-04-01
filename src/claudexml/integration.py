@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from claudexml.model import XMLModel
 
@@ -34,7 +34,7 @@ def parse_response(response: Any, model: type[T]) -> T:
         result = parse_response(response, MyModel)
     """
     text = _extract_text(response)
-    return model.from_xml(text)
+    return cast(T, model.from_xml(text))
 
 
 def _extract_text(response: Any) -> str:

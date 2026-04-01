@@ -60,7 +60,7 @@ def register_validators(cls: type) -> None:
 
     for attr_name, attr in cls.__dict__.items():
         if callable(attr) and hasattr(attr, "_validator_fields"):
-            for field_name in attr._validator_fields:  # type: ignore[attr-defined]
+            for field_name in attr._validator_fields:
                 if field_name not in _validator_registry[cls_id]:
                     _validator_registry[cls_id][field_name] = []
                 _validator_registry[cls_id][field_name].append(attr)

@@ -42,7 +42,7 @@ class XMLModelMeta(type):
     ) -> XMLModelMeta:
         cls = super().__new__(mcs, name, bases, namespace)
         if name != "XMLModel":
-            register_validators(cls)  # type: ignore[arg-type]
+            register_validators(cls)
         return cls
 
 
